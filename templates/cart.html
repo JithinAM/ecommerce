@@ -1,0 +1,41 @@
+{% extends 'blank_layout.html'%}
+{% load gettotal%}
+{% block content %}
+<!-- Feadtued Categories -->
+{% if messages %} 
+                <div class="message-container">
+                    {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                   
+                </div>
+              
+                <div class="payment-container">
+                    <h1>Payment Details</h1>
+
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number:</label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter card number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvc">ACOUNT NUMBER</label>
+                        <input type="text" id="accountnumber" name="accountnumber" placeholder="Enter Account number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardHolderName">Card Holder's Name:</label>
+                        <input type="text" id="cardHolderName" name="cardHolderName" placeholder="Enter card holder's name" required>
+                        <form action="{% url 'payment' %}" method="get">
+                            <button  class="paybtn" type="submit">CLICK FOR PAYMENT</button>
+                        </form>
+                        <form action="{% url 'cashpayment' %}" method="get">
+                            <button  class="paybtn" type="submit">CLICK FOR CASH ON DELIVERY</button>
+                        </form>
+                    </div>
+                   
+                    
+                    
+                    {% endfor %}
+{% else %}                    
+{% include 'cart_container.html' %}
+{% endif %}
+
+{% endblock content%}

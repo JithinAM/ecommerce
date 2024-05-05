@@ -1,0 +1,40 @@
+{% load getstatus%}
+
+    {% if orders %}
+    <div class=" single-product">
+
+    <table class='tble1'>
+        <tbody><tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total Price</th>
+            <th>Status</th>
+
+        </tr>
+    {% for order in orders%}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.created_at}}</td>
+            <td> &#8377;{{ order.total_price}}</td>
+            
+            <td>{% getstatus order.order_status %}</td>
+          
+        </tr>
+      
+    {% endfor%}
+   
+  
+     </tbody></table>
+     {% else %}
+    <div class='ndr'>
+     <h1 class="norders"> NO ORDERS!!</h1>
+    </div>
+     
+     {% endif%}
+</div>
+   
+
+   
+
+
+       

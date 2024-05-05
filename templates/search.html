@@ -1,0 +1,39 @@
+
+
+{% extends 'blank_layout.html'%}
+{% block content %}
+<div class="header">
+
+    {% if search_results %}
+    <div class="caption">
+      <h2 class="buy">Search Results:</h2>
+    </div>
+ 
+    <div class="row">
+        {% for result in search_results %}
+      
+            {% csrf_token %}
+             <div class="row"> 
+        <div class="col-4">
+         
+            <a href="{{ result.url }}">
+                <img src="{{ result.product.image.url }}" alt="{{ result.product.title }}">
+            </a>
+     
+           
+                <h4 >{{ result.product.title}}</h4>
+                <p class="cost"> &#8377;{{result.product.price}}</p>
+                
+        </div>
+
+
+    </div>
+    {% endfor %}
+
+    {% else %}
+    <h3>Search Results:No results for {{search_query}}</h3>
+    {% endif %}
+
+
+{% endblock %}
+</div>
